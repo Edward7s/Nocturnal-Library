@@ -13,7 +13,7 @@ using ABI_RC.Core;
 
 namespace NocturnalLibrary
 {
-     static class Extensions
+     public static class Extensions
     {
         public static ColorBlock ColorBlock { get; } = new ColorBlock() { 
         normalColor = (Color)new Color32(40, 40, 40,180),
@@ -24,6 +24,35 @@ namespace NocturnalLibrary
         colorMultiplier = 1,
         selectedColor = (Color)new Color32(40, 40, 40, 180),
         };
+
+        public static Color FloatArrToColor32(this float[] floatArr)
+        {
+            if (floatArr.Length == 4)
+                return new Color(byte.Parse(Math.Round(floatArr[0]).ToString()), byte.Parse(Math.Round(floatArr[1]).ToString()), byte.Parse(Math.Round(floatArr[2]).ToString()), byte.Parse(Math.Round(floatArr[3]).ToString()));
+            return new Color(byte.Parse(Math.Round(floatArr[0]).ToString()), byte.Parse(Math.Round(floatArr[1]).ToString()), byte.Parse(Math.Round(floatArr[2]).ToString()), 255);
+        }
+        public static Color FloatArrToColor(this float[] floatArr)
+        {
+            if (floatArr.Length == 4)
+                return (Color)new Color32(byte.Parse(floatArr[0].ToString()), byte.Parse(floatArr[1].ToString()), byte.Parse(floatArr[2].ToString()), byte.Parse(floatArr[3].ToString()));
+            return (Color)new Color32(byte.Parse(floatArr[0].ToString()), byte.Parse(floatArr[1].ToString()), byte.Parse(floatArr[2].ToString()), 1);
+
+        }
+        public static byte[] FloatArrToByteArr(this float[] floatArr)
+        {
+            if (floatArr.Length == 4)
+                return new byte[] { byte.Parse(floatArr[0].ToString()), byte.Parse(floatArr[1].ToString()), byte.Parse(floatArr[2].ToString()), byte.Parse(floatArr[3].ToString()) };
+            return new byte[] { byte.Parse(floatArr[0].ToString()), byte.Parse(floatArr[1].ToString()), byte.Parse(floatArr[2].ToString()),255};
+        }
+        public static Color IntArrToColor32(this int[] intArr)
+        {
+            if (intArr.Length == 4)
+                return (Color)new Color32(byte.Parse(intArr[0].ToString()), byte.Parse(intArr[1].ToString()), byte.Parse(intArr[2].ToString()), byte.Parse(intArr[3].ToString()));
+            return (Color)new Color32(byte.Parse(intArr[0].ToString()), byte.Parse(intArr[1].ToString()), byte.Parse(intArr[2].ToString()), 255 );
+        }
+
+        public static byte ToByte(this float floatnumb)
+            => byte.Parse(floatnumb.ToString());
 
         private static Texture2D _Texture2d { get; set; }
 

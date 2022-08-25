@@ -13,7 +13,7 @@ namespace NocturnalLibrary.Api
         private GameObject _button { get; set; }
         private GameObject _text { get; set; }
         private TMPro.TextMeshProUGUI _textComp { get; set; }
-        private UnityEngine.UI.Slider _sliderComp { get; set; }
+        public UnityEngine.UI.Slider SliderComp { get; set; }
         private GameObject _fillGameObject { get; set; }
 
         public Slider(MenuHolder menu, string text, Action<float> onValueChange, float preValue = 0,Action action = null)
@@ -39,9 +39,9 @@ namespace NocturnalLibrary.Api
             _text.transform.localScale = new Vector3(0.53f, 0.67f, 1);
             _button.transform.localScale = new Vector3(0.28f, 1.25f, 1);
             Component.DestroyImmediate(_button.GetComponent<UnityEngine.UI.Button>());
-            _sliderComp = _button.AddComponent<UnityEngine.UI.Slider>();
-            _sliderComp.value = preValue;
-            _sliderComp.direction = UnityEngine.UI.Slider.Direction.BottomToTop;
+            SliderComp = _button.AddComponent<UnityEngine.UI.Slider>();
+            SliderComp.value = preValue;
+            SliderComp.direction = UnityEngine.UI.Slider.Direction.BottomToTop;
             _fillGameObject = new GameObject("SliderFill");
             _button.GetComponent<UnityEngine.UI.Image>().ChangeSpriteFromString(Utils.Config.s_instance.Js.SliderBackGround);
             _fillGameObject.gameObject.AddComponent<Image>().ChangeSpriteFromString(Utils.Config.s_instance.Js.SliderBackGroundFillArea).color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
@@ -51,14 +51,14 @@ namespace NocturnalLibrary.Api
             _fillGameObject.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
             _fillGameObject.transform.localEulerAngles = Vector3.zero;
             _fillGameObject.layer = 5;
-            _sliderComp.fillRect = _fillGameObject.GetComponent<RectTransform>();
-            _sliderComp.onValueChanged.AddListener((float value) =>
+            SliderComp.fillRect = _fillGameObject.GetComponent<RectTransform>();
+            SliderComp.onValueChanged.AddListener((float value) =>
             {
                 action.Invoke();
                 onValueChange(value);
 
             });
-            _sliderComp.colors = Extensions.ColorBlock;
+            SliderComp.colors = Extensions.ColorBlock;
 
         }
     }

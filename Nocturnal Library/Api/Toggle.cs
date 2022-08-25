@@ -48,9 +48,9 @@ namespace NocturnalLibrary.Api
             _iconOn.transform.localPosition = Vector3.zero;
             _iconOn.transform.localEulerAngles = Vector3.zero;
             _iconOn.transform.localScale = new Vector3(0.65f, 0.65f, 1);
-            Extensions.ChangeSpriteFromString(_iconOn.GetComponent<Image>(), Utils.Config.s_instance.Js.ToggleIconOn).color = new Color(1,0,0,0.65f);
+            Extensions.ChangeSpriteFromString(_iconOn.GetComponent<Image>(), Utils.Config.s_instance.Js.ToggleIconOn).color = new Color(0,1,0,0.65f);
             _iconOff = GameObject.Instantiate(_iconOn, _iconOn.transform.parent);
-            Extensions.ChangeSpriteFromString(_iconOff.GetComponent<Image>(), Utils.Config.s_instance.Js.ToggleIconOff).color = new Color(0, 1, 0, 0.65f);
+            Extensions.ChangeSpriteFromString(_iconOff.GetComponent<Image>(), Utils.Config.s_instance.Js.ToggleIconOff).color = new Color(1, 0, 0, 0.65f);
             _iconOff.name = "Icon Off";
             _iconOff.transform.localPosition = Vector3.zero;
             Component.DestroyImmediate(_button.GetComponent<UnityEngine.UI.Button>());

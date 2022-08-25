@@ -61,6 +61,7 @@ namespace NocturnalLibrary.Utils
                     wc.Dispose();
                 }
             }
+
             Js = JsonConvert.DeserializeObject<Json>(File.ReadAllText(Directory.GetCurrentDirectory() + "//Nocturnal//LibraryConfig.Json"));
             using (WebClient wc = new WebClient())
             {
@@ -83,6 +84,7 @@ namespace NocturnalLibrary.Utils
             }
             Js = JsonConvert.DeserializeObject<Json>(File.ReadAllText(Directory.GetCurrentDirectory() + "//Nocturnal//LibraryConfig.Json"));
             DefaultMenu.SaveConigs.Add(() => s_instance.SaveConfig());
+
         }
 
         public void SaveConfig() => File.WriteAllText(Directory.GetCurrentDirectory() + "//Nocturnal//LibraryConfig.Json", JsonConvert.SerializeObject(Js));

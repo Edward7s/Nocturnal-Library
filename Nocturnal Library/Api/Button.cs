@@ -8,9 +8,9 @@ using UnityEngine.UI;
 
 namespace NocturnalLibrary.Api
 {
-    internal class Button : IDisposable
+    public class Button : IDisposable
     {
-        private GameObject _button { get; set; }
+        public GameObject Object { get; set; }
         private GameObject _text { get; set; }
         private TMPro.TextMeshProUGUI _textComp { get; set; }
 
@@ -22,11 +22,11 @@ namespace NocturnalLibrary.Api
                 return;
             }
             menu.ObjectsCount++;
-            _button = GameObject.Instantiate(Menu.Menu.Instance.Button, menu.Layout.transform);
-            _button.AddComponent<LayoutElement>().minHeight = 100;
-            _button.GetComponent<LayoutElement>().minWidth = 100;
-            _button.transform.localScale = new Vector3(1, 1, 1);
-            _text = _button.transform.Find("textNoc").gameObject;
+            Object = GameObject.Instantiate(Menu.Menu.Instance.Button, menu.Layout.transform);
+            Object.AddComponent<LayoutElement>().minHeight = 100;
+            Object.GetComponent<LayoutElement>().minWidth = 100;
+            Object.transform.localScale = new Vector3(1, 1, 1);
+            _text = Object.transform.Find("textNoc").gameObject;
             _textComp = _text.GetComponent<TMPro.TextMeshProUGUI>();
             _textComp.text = text;
             _textComp.fontSize = 35;
@@ -35,15 +35,14 @@ namespace NocturnalLibrary.Api
             _text.transform.localPosition = new Vector3(-87f, 0, 0);
             _text.GetComponent<RectTransform>().sizeDelta = new Vector2(-340, 100);
             _text.transform.localScale = new Vector3(0.53f, 0.67f, 1);
-            _button.transform.localScale = new Vector3(0.32f, 1.45f, 1);
-            _button.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => action.Invoke());
-            Dispose();
+            Object.transform.localScale = new Vector3(0.32f, 1.45f, 1);
+            Object.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => action.Invoke());
         }
 
         public void Dispose()
         {
             _text = null;
-            _button = null;
+            Object = null;
             _textComp = null;
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NocturnalLibrary.Utils
 {
-     class DefaultMenu
+     public class DefaultMenu
     {
         public static readonly List<Action> SaveConigs = new List<Action>();
 

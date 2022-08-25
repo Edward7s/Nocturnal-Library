@@ -31,7 +31,7 @@ namespace NocturnalLibrary.Menu
             Mask.layer = 5;
             ViewPort = GameObject.Instantiate(Mask.gameObject, Mask.transform);
             ViewPort.transform.localScale = new Vector3(1.1f, 1, 1);
-            Mask.gameObject.AddComponent<Image>().color = new Color(0, 0, 0, 0.6f);
+            Mask.gameObject.AddComponent<Image>().color = new Color(0, 0, 0, Utils.Config.s_instance.Js.ImageOpacity);
             Mask.gameObject.AddComponent<Mask>();
             Mask.gameObject.SetActive(false);
             Mask.transform.localScale = new Vector3(0.23f, 0.23f, 1);

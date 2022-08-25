@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 namespace NocturnalLibrary.Utils
 {
-    internal class Objects
+    public class Objects
     {
         public static GameObject NamePlateContent { get; set; }
 
