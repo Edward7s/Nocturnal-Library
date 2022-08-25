@@ -30,7 +30,7 @@ namespace NocturnalLibrary.Menu
             Mask = GameObject.Instantiate(new GameObject("Mask"), this.transform);
             Mask.layer = 5;
             ViewPort = GameObject.Instantiate(Mask.gameObject, Mask.transform);
-            ViewPort.transform.localScale = new Vector3(1.1f, 1, 1);
+            ViewPort.transform.localScale = new Vector3(1.125f, 1.075f, 1);
             Mask.gameObject.AddComponent<Image>().color = new Color(0, 0, 0, Utils.Config.s_instance.Js.ImageOpacity);
             Mask.gameObject.AddComponent<Mask>();
             Mask.gameObject.SetActive(false);
@@ -68,9 +68,46 @@ namespace NocturnalLibrary.Menu
             ScrollRect scrollRect = this.gameObject.AddComponent<ScrollRect>();
             scrollRect.content = ViewPort.gameObject.GetComponent<RectTransform>();
             scrollRect.horizontal = false;
-            scrollRect.scrollSensitivity = 3; 
+            scrollRect.scrollSensitivity = 3;
+            Scrollbar scrollBar = new GameObject("ScrollBar", new Type[] { typeof(Image) }).AddComponent<Scrollbar>();
+            scrollBar.transform.parent = Mask.transform;
+            scrollBar.transform.localScale = new Vector3(0.1f,0.1f);
+            scrollBar.transform.localPosition = new Vector3(46.8f, 0);          
+            scrollBar.GetComponent<RectTransform>().sizeDelta = new Vector2(40, 1000);
+            GameObject handle = new GameObject("Handle", new Type[] { typeof(Image) });
+            handle.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            handle.transform.parent = scrollBar.transform;
+            handle.transform.localScale = Vector3.one;
+            handle.transform.localPosition = Vector3.zero;
+            handle.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
+            scrollBar.handleRect = handle.GetComponent<RectTransform>();
+            scrollBar.direction = Scrollbar.Direction.BottomToTop;
+            scrollBar.colors = Extensions.ColorBlock;
+            scrollRect.verticalScrollbar = scrollBar;
+            new DefaultMenu(); new DefaultMenu();
             new DefaultMenu();
-            Utils.Actions.UiLoaded.Invoke();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+            new DefaultMenu();
+
+            Utils.Actions.OnUiLoaded.Invoke();
         }
     }
 }
