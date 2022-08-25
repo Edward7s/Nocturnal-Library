@@ -84,27 +84,6 @@ namespace NocturnalLibrary.Menu
             scrollBar.direction = Scrollbar.Direction.BottomToTop;
             scrollBar.colors = Extensions.ColorBlock;
             scrollRect.verticalScrollbar = scrollBar;
-            new DefaultMenu(); new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
-            new DefaultMenu();
             new DefaultMenu();
 
             Utils.Actions.OnUiLoaded.Invoke();
