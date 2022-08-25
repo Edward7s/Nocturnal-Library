@@ -20,7 +20,7 @@ namespace NocturnalLibrary.Api
             GenerateMenu(modName, text, textColor);
         private void GenerateMenu(string modName,string text, Color textColor)
         {
-            _menuObj = new GameObject("Holder " + modName + "_" + text, new Type[] { typeof(Image), typeof(Mask), typeof(LayoutElement) });
+            _menuObj = new GameObject("Holder " + modName + "_" + text, new Type[] { typeof(LayoutElement) });
             _menuObj.transform.parent = Menu.Menu.Instance.ViewPort.transform;
             _menuObj.transform.localScale = new Vector3(0.4f, 0.08f, 1);
             _menuObj.transform.localPosition = Vector3.zero;
@@ -31,22 +31,28 @@ namespace NocturnalLibrary.Api
             _textTmpProComp.color = textColor;
             _textTmpProComp.outlineColor = textColor;
             _textTmpProComp.outlineWidth = 0.1f;
-            _textTmpProComp.maskable = false;
+          //  _textTmpProComp.maskable = false;
             _textTmpProComp.enableWordWrapping = false;
             _textTmpProComp.alignment = TMPro.TextAlignmentOptions.TopLeft;
             _text.transform.localScale = new Vector3(0.16f, 0.8f, 1);
             _text.transform.localPosition = new Vector3(-70.6f, 191, 0);
-            _text.name = "Title";
+            _text.name = "Title";         
+            GameObject Mask = new GameObject("Mask", new Type[] { typeof(Image), typeof(Mask) });
+            Mask.transform.parent = _menuObj.transform;
+            Mask.transform.localScale = Vector3.one;
+            Mask.transform.localPosition = Vector3.zero;
+            Mask.transform.localEulerAngles = Vector3.zero;
+            Mask.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 350);
             Layout = new GameObject("GridLayour", typeof(GridLayoutGroup));
-            Layout.transform.parent = _menuObj.transform;
+            Layout.transform.parent = Mask.transform;
             Layout.transform.localScale = Vector3.one;
-            Layout.transform.localPosition = new Vector3(-74.5f,74.3f, 0);
+            Layout.transform.localPosition = new Vector3(-74.5f, 74.3f, 0);
             Layout.transform.localEulerAngles = Vector3.zero;
             GridLayout = Layout.GetComponent<GridLayoutGroup>();
             GridLayout.constraintCount = 6;
             GridLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
             GridLayout.spacing = new Vector2(-70, 65);
-            Extensions.ChangeSpriteFromString(_menuObj.GetComponent<Image>(), Utils.Config.s_instance.Js.BackGround).color = new Color(0, 0, 0, 0.6f); ;
+            Extensions.ChangeSpriteFromString(Mask.GetComponent<Image>(), Utils.Config.s_instance.Js.BackGround).color = new Color(0, 0, 0, 0.6f); ;
         }
 
         public void Dispose()
