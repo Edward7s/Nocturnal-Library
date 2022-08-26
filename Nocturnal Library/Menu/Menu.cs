@@ -22,7 +22,7 @@ namespace NocturnalLibrary.Menu
         {
             Instance = this;
             this.gameObject.layer = 5;
-            this.transform.localPosition = new Vector3(-0.23f, 0, 0);
+            this.transform.localPosition = new Vector3(-0.18f, 0, 0);
             this.transform.localEulerAngles = Vector3.zero;
             this.transform.localScale = new Vector3(0.026f, 0.03f, 1);
             this.gameObject.AddComponent<Canvas>().renderMode = RenderMode.WorldSpace;
@@ -44,6 +44,9 @@ namespace NocturnalLibrary.Menu
             _viewPortComp.spacing = new Vector2(0,-315);
             ViewPort.AddComponent<ContentSizeFitter>().verticalFit = UnityEngine.UI.ContentSizeFitter.FitMode.MinSize;
             ViewPort.GetComponent<ContentSizeFitter>().horizontalFit = UnityEngine.UI.ContentSizeFitter.FitMode.MinSize;
+            ViewPort.AddComponent<BoxCollider>().extents = new Vector3(50, 1000);
+            ViewPort.GetComponent<BoxCollider>().isTrigger = true;
+
             Button = new GameObject("MenuButton", new Type[] { typeof(Image) });
             Button.transform.parent = this.transform;
             _buttonComp = Button.gameObject.AddComponent<Button>();
@@ -52,7 +55,8 @@ namespace NocturnalLibrary.Menu
             Button.transform.localPosition = new Vector3(26, 12.9964f, 0);
             Button.transform.localEulerAngles = Vector3.zero;
             Button.layer = 5;
-            Button.gameObject.AddComponent<BoxCollider>().size = new Vector3(1, 1, 0.01f);
+            Button.AddComponent<BoxCollider>().extents = new Vector3(60, 60, 0.0001f);
+            Button.GetComponent<BoxCollider>().isTrigger = true;
             Extensions.ChangeSpriteFromString(Button.GetComponent<Image>(), Utils.Config.s_instance.Js.ButtonBackgGround);
             GameObject Menu = GameObject.Instantiate(Utils.Objects.TextTmpGameObject, Button.transform);
             Menu.GetComponent<TMPro.TextMeshProUGUI>().text = "Menu";
@@ -68,11 +72,11 @@ namespace NocturnalLibrary.Menu
             ScrollRect scrollRect = this.gameObject.AddComponent<ScrollRect>();
             scrollRect.content = ViewPort.gameObject.GetComponent<RectTransform>();
             scrollRect.horizontal = false;
-            scrollRect.scrollSensitivity = 3;
+            scrollRect.scrollSensitivity = 0.5f;
             Scrollbar scrollBar = new GameObject("ScrollBar", new Type[] { typeof(Image) }).AddComponent<Scrollbar>();
             scrollBar.transform.parent = Mask.transform;
             scrollBar.transform.localScale = new Vector3(0.1f,0.1f);
-            scrollBar.transform.localPosition = new Vector3(46.8f, 0);          
+            scrollBar.transform.localPosition = new Vector3(46.8f, 0);   
             scrollBar.GetComponent<RectTransform>().sizeDelta = new Vector2(40, 1000);
             GameObject handle = new GameObject("Handle", new Type[] { typeof(Image) });
             handle.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
@@ -85,7 +89,6 @@ namespace NocturnalLibrary.Menu
             scrollBar.colors = Extensions.ColorBlock;
             scrollRect.verticalScrollbar = scrollBar;
             new DefaultMenu();
-
             Utils.Actions.OnUiLoaded.Invoke();
         }
     }
