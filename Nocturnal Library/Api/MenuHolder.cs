@@ -31,7 +31,6 @@ namespace NocturnalLibrary.Api
             _textTmpProComp.color = textColor;
             _textTmpProComp.outlineColor = textColor;
             _textTmpProComp.outlineWidth = 0.1f;
-          //  _textTmpProComp.maskable = false;
             _textTmpProComp.enableWordWrapping = false;
             _textTmpProComp.alignment = TMPro.TextAlignmentOptions.TopLeft;
             _text.transform.localScale = new Vector3(0.16f, 0.8f, 1);
